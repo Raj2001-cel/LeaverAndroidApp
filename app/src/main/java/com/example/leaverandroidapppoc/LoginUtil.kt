@@ -4,19 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.preference.PreferenceManager
 import android.util.Log
-import android.widget.Toast
 import com.android.volley.*
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import org.apache.http.conn.ConnectTimeoutException
 import org.json.JSONException
 import org.json.JSONObject
-import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
-import java.net.MalformedURLException
-import java.net.SocketException
-import java.net.SocketTimeoutException
 import java.util.*
 
 class LoginUtil {
@@ -42,7 +36,22 @@ class LoginUtil {
                 Response.Listener { response: JSONObject ->
                     try {
                         if (response != null) {
-                            System.out.println("token is "+response.getJSONObject("data").get("token"))
+                            System.out.println("token is " + response.getJSONObject("data").get("token"))
+                            val token  = response.getJSONObject("data").get("token");
+                            val i = Intent(context, Home::class.java)
+
+                            i.putExtra("token",""+token)
+
+                            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context).edit()
+
+                            sharedPref.putString("token", ""+token)
+                            sharedPref.putBoolean("logged", true)
+                            sharedPref.apply()
+                            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            context.startActivity(i)
+
+                            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            context.startActivity(i)
                         }
                     } catch (e: JSONException) {
                         e.printStackTrace()
@@ -68,9 +77,7 @@ class LoginUtil {
                     Log.d("headers  ", "headers appearing")
                     Log.d("success_signup_headers ", "headers s" + response.headers)
 
-                    val i = Intent(context, signIn::class.java)
-                    i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    context.startActivity(i)
+
                     Response.success(
                             jsonResponse,
                             HttpHeaderParser.parseCacheHeaders(response)
@@ -87,6 +94,8 @@ class LoginUtil {
     }
 
     fun ErrorFunction(context: Context?, error: VolleyError) {
-        Log.d("error",error.toString())
+        Log.d("error", error.toString())
     }
 }
+
+
