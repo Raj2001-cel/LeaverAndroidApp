@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    tools:context=".signIn">
     <TextView
         android:id="@+id/logintxt"
         android:layout_width="193dp"
         android:layout_height="58dp"
         android:paddingLeft="40dp"
-        android:text="Sign Up"
+        android:text="Sign In"
         android:textColor="@color/purple_200"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/usernametxt"
+        android:id="@+id/usernametxtlgn"
         android:layout_width="167dp"
         android:layout_height="54dp"
         android:layout_marginTop="24dp"
@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/passwordtxt"
+        android:id="@+id/passwordtxtlgn"
         android:layout_width="168dp"
         android:layout_height="51dp"
         android:text="PASSWORD"
@@ -51,7 +51,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/passwordlgn"
         android:layout_width="307dp"
         android:layout_height="55dp"
         android:ems="10"
@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="0.024" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/usernamelgn"
         android:layout_width="311dp"
         android:layout_height="52dp"
         android:ems="10"
@@ -78,10 +78,10 @@
         app:layout_constraintVertical_bias="0.108" />
 
     <Button
-        android:id="@+id/signupbtn"
+        android:id="@+id/signinbtn"
         android:layout_width="147dp"
         android:layout_height="61dp"
-        android:text="SIGN UP"
+        android:text="SIGN IN"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
