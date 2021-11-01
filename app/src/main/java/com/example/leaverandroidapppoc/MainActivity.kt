@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                     val context = applicationContext
                     val createUser = CreateUser()
                     try {
-                        createUser.createUser(context,email, password)
+                        createUser.createUser(context,email,password)
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }

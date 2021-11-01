@@ -5,24 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home">
+
+    <!--ImageView to preview the selected image-->
     <Button
-        android:id="@+id/BSelectImage"
+        android:id="@+id/capture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
 
-        android:text="SELECT IMAGE"
+        android:text="Capture"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
-    <!--ImageView to preview the selected image-->
     <ImageView
         android:id="@+id/IVPreviewImage"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="400dp"
+        android:layout_height="529dp"
         android:layout_below="@id/BSelectImage"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="16dp" />
+
+    <Button
+        android:id="@+id/BSelectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="35dp"
+        android:layout_toEndOf="@+id/capture"
+        android:text="SELECT IMAGE"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 </RelativeLayout>

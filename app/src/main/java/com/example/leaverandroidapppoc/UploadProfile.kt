@@ -24,7 +24,7 @@ class UploadProfile : AppCompatActivity() {
     @Throws(IOException::class)
     fun uploadProfile(context: Context?, Authorization: String, bitmap: Bitmap) {
         val volleyMultipartRequest: VolleyMultipartRequest = object : VolleyMultipartRequest(Method.POST,
-                "http://192.168.0.28:5000/predict",
+                MyUtil.getProperty("domainNew", context),
                 Response.Listener { response ->
                     try {
 //                        val obj = JSONObject(String(response.data))
