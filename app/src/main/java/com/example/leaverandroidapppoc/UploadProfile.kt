@@ -5,14 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlin.Throws
 import android.graphics.Bitmap
 import android.util.Log
-import com.example.leaverandroidapppoc.VolleyMultipartRequest
-import com.example.leaverandroidapppoc.MyUtil
-import com.android.volley.NetworkResponse
-import org.json.JSONObject
+import android.widget.TextView
 import org.json.JSONException
-import android.widget.Toast
-import com.android.volley.VolleyError
-import com.example.leaverandroidapppoc.VolleyMultipartRequest.DataPart
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
@@ -22,13 +16,14 @@ import java.util.HashMap
 
 class UploadProfile : AppCompatActivity() {
     @Throws(IOException::class)
-    fun uploadProfile(context: Context?, Authorization: String, bitmap: Bitmap) {
+    fun uploadProfile(context: Context?, Authorization: String, bitmap: Bitmap, textViewOutput: TextView) {
         val volleyMultipartRequest: VolleyMultipartRequest = object : VolleyMultipartRequest(Method.POST,
                 MyUtil.getProperty("domainNew", context),
                 Response.Listener { response ->
                     try {
 //                        val obj = JSONObject(String(response.data))
                         Log.d("output", String(response.data))
+                        textViewOutput.setText(""+String(response.data).toUpperCase())
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }

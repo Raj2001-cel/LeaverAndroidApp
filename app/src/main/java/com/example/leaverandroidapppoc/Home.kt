@@ -4,17 +4,15 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import java.io.IOException
@@ -24,6 +22,7 @@ import java.io.IOException
 class Home : AppCompatActivity() {
     lateinit var BSelectImage: Button
     lateinit var galleryBtn: Button
+    lateinit var textViewOutput: TextView
     // One Preview Image
     var IVPreviewImage: ImageView? = null
 
@@ -46,31 +45,24 @@ class Home : AppCompatActivity() {
         BSelectImage = findViewById(R.id.BSelectImage);
         galleryBtn  = findViewById(R.id.capture)
         IVPreviewImage = findViewById(R.id.IVPreviewImage);
-        BSelectImage.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                // Do some work here
+        textViewOutput = findViewById(R.id.textView)
+        BSelectImage.setOnClickListener { // Do some work here
 //                pickImage();
 //                val i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 //                startActivityForResult(intent, SELECT_PICTURE)
-                if(checkAndRequestPermissions()) {
-                   takePictureFromGallery()
-                }
+            if (checkAndRequestPermissions()) {
+                takePictureFromGallery()
             }
+        }
 
-        })
-
-        galleryBtn.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                // Do some work here
+        galleryBtn.setOnClickListener { // Do some work here
 //                pickImage();
 //                val i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 //                startActivityForResult(intent, SELECT_PICTURE)
-                if(checkAndRequestPermissions()) {
-                    takePictureFromCamera()
-                }
+            if (checkAndRequestPermissions()) {
+                takePictureFromCamera()
             }
-
-        })
+        }
 
     }
 
@@ -105,7 +97,8 @@ class Home : AppCompatActivity() {
                             applicationContext,
 
                             token,
-                            bitmap
+                            bitmap,
+                            textViewOutput
                     )
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -123,7 +116,7 @@ class Home : AppCompatActivity() {
                                 applicationContext,
 
                                 token,
-                                bitmapImage
+                                bitmapImage,textViewOutput
                         )
                     }
                 } catch (e: IOException) {
