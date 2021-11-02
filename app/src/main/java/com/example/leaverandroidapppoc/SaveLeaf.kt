@@ -1,36 +1,27 @@
 package com.example.leaverandroidapppoc
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import kotlin.Throws
 import android.graphics.Bitmap
 import android.util.Log
-import android.widget.TextView
-import org.json.JSONException
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
+import org.json.JSONException
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.util.HashMap
 
-class UploadProfile : AppCompatActivity() {
+class SaveLeaf : AppCompatActivity() {
     @Throws(IOException::class)
-    fun uploadProfile(context: Context?, Authorization: String, bitmap: Bitmap, textViewOutput: TextView) {
+    fun saveLeaf(context: Context?, Authorization: String, bitmap: Bitmap, isUnhealthy: Boolean, reportId:Long) {
         val volleyMultipartRequest: VolleyMultipartRequest = object : VolleyMultipartRequest(Method.POST,
-                MyUtil.getProperty("domainNew", context),
+                MyUtil.getProperty("saveleaf.url.path", context)+""+reportId+"/"+isUnhealthy,
                 Response.Listener { response ->
                     try {
 //                        val obj = JSONObject(String(response.data))
-
                         Log.d("output", String(response.data))
-                        var result:String?=null
-                        if (Integer.parseInt(String(response.data))==1){
-                            result = "healthy"
-                        }else{
-                            result  = "unhealthy"
-                        }
-                        textViewOutput.setText(""+result)
+
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
@@ -40,15 +31,16 @@ class UploadProfile : AppCompatActivity() {
             override val byteData: Map<String, DataPart>
                 protected get() {
                     val params: MutableMap<String, DataPart> = HashMap()
+
                     val imagename = System.currentTimeMillis()
-                    params["file"] = DataPart("$imagename.png", getFileDataFromDrawable(bitmap))
+                    params["imageFile"] = DataPart("$imagename.png", getFileDataFromDrawable(bitmap))
                     return params
                 }
 
             @Throws(AuthFailureError::class)
             override fun getHeaders(): Map<String, String> {
                 val headers = HashMap<String, String>()
-                headers["Authorization"] = Authorization
+                headers["Authorization"] = "Bearer "+Authorization
                 return headers
             }
         }

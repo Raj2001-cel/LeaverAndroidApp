@@ -1,8 +1,10 @@
 package com.example.leaverandroidapppoc
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.util.Patterns
 import android.view.View
@@ -23,10 +25,17 @@ class MainActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.password)
         etSignUpBtn = findViewById(R.id.signupbtn);
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(this@MainActivity)
+        val isLoggedIn = sharedPref.getBoolean("logged",false)
+        if(isLoggedIn==true){
+            val i = Intent(this@MainActivity,Home::class.java)
+            startActivity(i)
+        }
         etSignUpBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
+
+
                 val email = etEmail.getText().toString().trim { it <= ' ' }
                 val password = etPassword.getText().toString().trim { it <= ' ' }
                 Log.d("credentials ",email+" "+password)
