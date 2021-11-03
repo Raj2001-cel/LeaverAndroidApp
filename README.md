@@ -25,15 +25,15 @@ done in the inspection.
 
 ## Screenshots
 
-![](signup.jpg)
-![](signin.jpg)
-![](camera_capture.jpg)
-![](camera_capture_prediction.jpg)
-![](choser.jpg)
-![](choser_prediction.jpg)
-![](receivername.jpg)
-![](report.jpg)
-![](reportpdf.jpg)
+![](signup.jpeg)
+![](signin.jpeg)
+![](camera_capture.jpeg)
+![](camera_capture_prediction.jpeg)
+![](choser.jpeg)
+![](choser_prediction.jpeg)
+![](receivername.jpeg)
+![](report.jpeg)
+![](reportpdf.jpeg)
   
 ## Contributing
 
