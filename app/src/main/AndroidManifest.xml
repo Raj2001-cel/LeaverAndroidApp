@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LeaverAndroidAppPoc">
-        <activity android:name=".StartReportActivity"></activity>
+        <activity android:name=".DisplayReportActivity"></activity>
+        <activity android:name=".StartReportActivity" />
         <activity android:name=".Home" />
         <activity android:name=".signIn" />
         <activity android:name=".MainActivity">
@@ -29,6 +30,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>

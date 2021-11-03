@@ -84,10 +84,12 @@ class Home : AppCompatActivity() {
         }
 
         startReport.setOnClickListener{
-            val i = Intent(this, StartReportActivity::class.java)
+
             Log.d("rid", "inside home report id is "+reportId)
-            i.putExtra("reportId",reportId)
-            startActivity(i)
+            val getAllLeavesByReportId = GetAllLeavesByReportId()
+            reportId?.let { it1 -> getAllLeavesByReportId.getAllLeavesByReportId(this,token, it1) }
+
+
         }
 
     }
